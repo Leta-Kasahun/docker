@@ -1,0 +1,155 @@
+📁 PART 1: STANDARD PROJECT FOLDERS & FILES
+
+---
+src/
+
+Contains all application source code that Docker runs in production.
+
+src/index.js
+
+Main entry point where the server starts.
+
+src/app.js
+
+App configuration (middleware, routes, error handling).
+
+src/routes/
+
+Defines API endpoints and request paths.
+
+src/controllers/
+
+Handles HTTP requests and responses logic.
+
+src/services/
+
+Contains business logic and external integrations.
+
+src/models/
+
+Defines database schemas or ORM models.
+
+src/config/
+
+Manages environment-based configurations (DB, ports, secrets).
+
+tests/
+
+Holds automated tests used by CI/CD pipelines.
+
+public/
+
+Stores static assets like images, CSS, or frontend builds.
+
+scripts/
+
+Automation scripts for migrations, seeding, or maintenance.
+
+package.json
+
+Defines project metadata, dependencies, and run scripts.
+
+yarn.lock
+
+Locks exact dependency versions to ensure consistent builds.
+
+.npmrc / .yarnrc
+
+Configures package manager behavior and private registries.
+
+.env
+
+Stores environment variables and secrets (never committed).
+
+.env.example
+
+Documents required environment variables for developers.
+
+.gitignore
+
+Prevents unwanted files from being tracked by Git.
+
+.dockerignore
+
+Prevents unnecessary or sensitive files from entering Docker images.
+
+README.md
+
+Documents how to build, run, and use the project.
+
+.eslint.json
+
+Defines coding rules to maintain code quality.
+
+.prettierrc
+
+Controls automatic code formatting standards.
+
+docker-compose.yml
+
+Runs multiple services together (app, database, cache).
+
+docker-compose.override.yml
+
+Overrides compose settings for local development.
+
+----
+
+🐳 PART 2: DOCKERFILE INSTRUCTIONS 
+
+---
+FROM
+
+Defines the base operating system and runtime environment.
+
+WORKDIR
+
+Sets a consistent working directory inside the container.
+
+COPY
+
+Copies project files into the Docker image.
+
+ADD
+
+Copies files and optionally extracts archives (rarely used).
+
+RUN
+
+Executes commands during image build (install, compile).
+
+ENV
+
+Sets environment variables inside the container.
+
+ARG
+
+Defines build-time variables used only during image creation.
+
+EXPOSE
+
+Documents the port the application listens on.
+
+USER
+
+Runs the app as a non-root user for security.
+
+VOLUME
+
+Creates persistent storage outside the container lifecycle.
+
+HEALTHCHECK
+
+Monitors container health for orchestration systems.
+
+CMD
+
+Specifies the default command to run when the container starts.
+
+ENTRYPOINT
+
+Defines a fixed startup command that cannot be overridden easily.
+
+🔁 HOW EVERYTHING WORKS TOGETHER (MENTAL MODEL)
+
+Code lives in src/, dependencies are defined in package.json, locked by yarn.lock, filtered by .dockerignore, built by Dockerfile, configured via .env, and run as a container using Docker or Docker Compose.
